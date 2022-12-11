@@ -13,7 +13,14 @@ def openFile(fileName):
         print(line)
     b.close()
 
-os.system("del fileFirst.txt; del fileSecond.txt")
+def delFile(fileName):
+    b=open(fileName, "w")
+    b.flush()
+    b.close()
+
+delFile("fileFirst.txt")
+delFile("fileSecond.txt")
+
 makeFile("fileFirst.txt", "This is my first file1\n", "w")
 makeFile("fileFirst.txt", "This is my first file2\n", "w")
 makeFile("fileFirst.txt", "This is my first file3\n", "w")
