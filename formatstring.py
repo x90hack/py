@@ -1,3 +1,3 @@
 
-print("Hello, This is the string for U! %x ~~~~~~~" % 41414141)
-print("hello string is %s", "x90c")
+
+print("""string=%s hex=%x dec=%d""" % ("x90c", 41414141, 81))
